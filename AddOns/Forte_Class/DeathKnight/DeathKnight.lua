@@ -179,25 +179,26 @@ if FW.CLASS == "DEATHKNIGHT" then
 			3,3
 		}
 		local runeFlags = {"RuneBlood","RuneDeath","RuneFrost"};
-		-- add a system to support runes, will use new icon override system	in future	
-		local function DK_RuneUpdate(event,rune--[[,usable]])
-			local r = GetRuneType(rune);
-			local t = runeToType[rune];
+		-- add a system to support runes, will use new icon override system	in future
+		-- runes are no longer available, commented out, so it won't show error when casting portal
+		--local function DK_RuneUpdate(event,rune--[[,usable]])
+		--	local r = GetRuneType(rune);
+		--	local t = runeToType[rune];
 			--FW:Show(event.." "..tostring(r));
-			if r then
-				local start, duration, runeReady = GetRuneCooldown(rune);
-				--FW:Show(start.." "..duration.." "..tostring(runeReady));
-				if runeReady then
-					CD:CheckCooldown(runeNames[t].." ("..rune..")",0,0,iconTextures[r],runeFlags[t])
-				else
-					CD:CheckCooldown(runeNames[t].." ("..rune..")",start,duration,iconTextures[r],runeFlags[t])
-				end
-			end
-		end
-		FW:RegisterVariablesEvent(function() -- make sure variables are loaded
-			FW:RegisterToEvent("RUNE_POWER_UPDATE",DK_RuneUpdate);
-			FW:RegisterToEvent("RUNE_TYPE_UPDATE", DK_RuneUpdate);
-		end);
+		--	if r then
+		--		local start, duration, runeReady = GetRuneCooldown(rune);
+		--		--FW:Show(start.." "..duration.." "..tostring(runeReady));
+		--		if runeReady then
+		--			CD:CheckCooldown(runeNames[t].." ("..rune..")",0,0,iconTextures[r],runeFlags[t])
+		--		else
+		--			CD:CheckCooldown(runeNames[t].." ("..rune..")",start,duration,iconTextures[r],runeFlags[t])
+		--		end
+		--	end
+		--end
+		--FW:RegisterVariablesEvent(function() -- make sure variables are loaded
+		--	FW:RegisterToEvent("RUNE_POWER_UPDATE",DK_RuneUpdate);
+		--	FW:RegisterToEvent("RUNE_TYPE_UPDATE", DK_RuneUpdate);
+		--end);
 		
 		CD:AddCooldownBuff(49222); -- bone shield
 		CD:AddCooldownBuff(60068); -- path of frost
